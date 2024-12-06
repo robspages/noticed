@@ -65,10 +65,10 @@ module Noticed
 
       def with(params)
         if self < Ephemeral
-          new(params: params)
+          new(required_params: params)
         else
-          record = params.delete(:record)
-          new(params: params, record: record)
+          record = required_params.delete(:record)
+          new(required_params: params, record: record)
         end
       end
 
@@ -151,7 +151,7 @@ module Noticed
 
     # If a GlobalID record in params is no longer found, the params will default with a noticed_error key
     def deserialize_error?
-      !!params[:noticed_error]
+      !!required_params[:noticed_error]
     end
   end
 end
