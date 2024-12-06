@@ -6,7 +6,7 @@ Sends an email to each recipient.
 deliver_by :email do |config|
   config.mailer = "UserMailer"
   config.method = :receipt
-  config.params = ->{ params }
+  config.required_params = ->{ required_params }
   config.args = ->{ [1, 2, 3] }
 
   # Enqueues a separate job for sending the email using deliver_later.

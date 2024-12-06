@@ -7,7 +7,7 @@ module Noticed
     include Rails.application.routes.url_helpers
 
     attribute :record
-    attribute :params, default: {}
+    attribute :required_params, default: {}
 
     class Notification
       include ActiveModel::Model
@@ -18,11 +18,11 @@ module Noticed
       attribute :recipient
       attribute :event
 
-      delegate :params, :record, to: :event
+      delegate :required_params, :record, to: :event
 
-      def self.new_with_params(recipient, params)
+      def self.new_with_params(recipient, required_params)
         instance = new(recipient: recipient)
-        instance.event = module_parent.new(params: params)
+        instance.event = module_parent.new(required_params: required_params)
         instance
       end
     end
@@ -55,7 +55,7 @@ module Noticed
     end
 
     def record
-      params[:record]
+      required_params[:record]
     end
   end
 end

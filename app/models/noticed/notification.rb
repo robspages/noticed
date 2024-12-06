@@ -9,6 +9,6 @@ module Noticed
 
     scope :newest_first, -> { order(created_at: :desc) }
 
-    delegate :params, :record, to: :event
+    delegate :required_params, :record, to: :event
   end
 end

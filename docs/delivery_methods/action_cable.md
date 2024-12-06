@@ -6,7 +6,7 @@ Sends a notification to the browser via websockets (ActionCable channel by defau
 deliver_by :action_cable do |config|
   config.channel = "Noticed::NotificationChannel"
   config.stream = ->{ recipient }
-  config.message = ->{ params.merge( user_id: recipient.id) }
+  config.message = ->{ required_params.merge( user_id: recipient.id) }
 end
 ```
 
